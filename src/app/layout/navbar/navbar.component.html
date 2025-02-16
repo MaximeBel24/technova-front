@@ -17,14 +17,16 @@
                     </ul>
                 </details>
             </li>
-            <li>
-                <details #adminMenu>
-                    <summary>Admin</summary>
-                    <ul class="z-30">
-                        <li><a href="/products">All</a></li>
-                    </ul>
-                </details>
-            </li>
+            @if (isAdmin) { 
+                <li>
+                    <details #adminMenu >
+                        <summary>Admin</summary>
+                        <ul class="z-30 w-56">
+                            <li><a routerLink="/admin">Tableau de bord</a></li>
+                        </ul>
+                    </details>
+                </li>
+            }
         </div>
     </div>
     <div class="navbar-end pe-4 flex align-items-center">
@@ -33,7 +35,12 @@
                 <i class="fa-solid fa-user menu-icon"></i>
             </div>
             <ul class="dropdown-content menu menu-lg bg-base-100 rounded-box z-10 w-52 p-2 shadow -translate-x-28 ">
-                <li><button class="link hover:bg-white/50 no-underline">Connexion</button></li>
+                @if (isLoggedIn || isAdmin) {
+                    <li class="hover:bg-white/50"><button class="link  no-underline" routerLink="/user-dashboard">Tableau de bord</button></li>
+                    <li class="hover:bg-white/50"><button class="link text-red-500 no-underline" (click)="logout()">Déconnexion</button></li>
+                } @else {
+                    <li class="hover:bg-white/50"><button class="link  no-underline" routerLink="/login">Connexion</button></li>
+                }
             </ul>
         </div>
         <div class="dropdown dropdown-menu me-2" routerLink="/cart">

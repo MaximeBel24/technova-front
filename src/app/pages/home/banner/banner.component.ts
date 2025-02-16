@@ -6,14 +6,6 @@ import { Component } from '@angular/core';
   imports: [],
   templateUrl: './banner.component.html',
   styleUrl: './banner.component.scss',
-  animations: [
-    trigger('fadeIn', [
-      transition(':enter', [
-        style({ opacity: 0 }),
-        animate('1s ease-out', style({ opacity: 1 }))
-      ])
-    ])
-  ]
 })
 export class BannerComponent {
 

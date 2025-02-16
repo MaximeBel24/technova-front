@@ -14,22 +14,7 @@ import { NewsletterComponent } from "./newsletter/newsletter.component";
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent implements OnInit{
-  latestProducts: any[] = [];
-
-  constructor(private productService: ProductService) {}
-
-  ngOnInit(): void {
-    this.productService.getLatestProducts(6).subscribe(
-      (data) => {
-        this.latestProducts = data;
-      },
-      (error) => {
-        console.error('Erreur lors du chargement des produits', error);
-      }
-    );
-  }
-
+export class HomeComponent{
 
 
 }
