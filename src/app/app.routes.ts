@@ -4,6 +4,7 @@ import { RegisterComponent } from './pages/auth/register/register.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
 export const routes: Routes = [
     {
@@ -26,5 +27,10 @@ export const routes: Routes = [
         path: 'admin',
         component: AdminComponent,
         loadChildren: () => import('./pages/admin/admin.routes').then(m => m.routes)
+    },
+    {
+        path: '**',
+        component: PageNotFoundComponent,
+        title: 'Page introuvable'
     }
 ];

@@ -15,14 +15,7 @@ export class NavbarComponent implements OnInit {
   private router = inject(Router);
 
   ngOnInit() {
-    if (typeof window !== 'undefined') {
-      // ✅ Vérifier si window est accessible
       this.updateUserStatus();
-    } else {
-      console.log(
-        '⚠️ `window` est inaccessible (SSR détecté), données non chargées.'
-      );
-    }
   }
 
   updateUserStatus() {

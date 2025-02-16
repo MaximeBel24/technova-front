@@ -27,8 +27,7 @@ export class LoginComponent {
 
     this.accountService.login(email, password).subscribe(
       (res) => {
-        console.log('🔍 isAdminLoggedIn() :', StorageService.isAdminLoggedIn());
-        console.log('🔍 isUserLoggedIn() :', StorageService.isUserLoggedIn());
+        this.snackBar.open('Connexion réussie!', 'Fermer', { duration: 5000 });
         if (StorageService.isAdminLoggedIn()) {
           let destination: string = '/admin';
           this.router.navigateByUrl(destination);

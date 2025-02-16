@@ -27,7 +27,7 @@ export class RegisterComponent {
   onSubmit() {
     this.accountService.register(this.registerForm.value).subscribe(
       (response) => {
-        this.snackBar.open('Inscription réussie!', 'Close', { duration: 5000 });
+        this.snackBar.open('Inscription réussie!', 'Fermer', { duration: 5000 });
         this.router.navigateByUrl('/login');
       },
       (error) => {
