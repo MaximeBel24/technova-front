@@ -48,7 +48,7 @@ export class StorageService {
       typeof window.localStorage !== 'undefined'
     ) {
       let user = JSON.parse(window.localStorage.getItem(USER) || '{}');
-      console.log('Utilisateur : ' + user);
+      // console.log('Utilisateur : ' + user);
       return user;
     }
     return null;
@@ -59,7 +59,7 @@ export class StorageService {
     if (user == null) {
       return '';
     }
-    console.log('ID User : ' + user.userId);
+    // console.log('ID User : ' + user.userId);
     return user.userId;
   }
 
@@ -67,16 +67,16 @@ export class StorageService {
     const token = window.localStorage.getItem('ecom-token');
 
     if (!token) {
-      console.log('⚠️ Aucun token trouvé !');
+      // console.log('⚠️ Aucun token trouvé !');
       return [];
     }
 
     try {
       const decodedToken: any = jwtDecode(token);
-      console.log('✅ Token décodé :', decodedToken);
+      // console.log('✅ Token décodé :', decodedToken);
 
       if (decodedToken.roles && Array.isArray(decodedToken.roles)) {
-        console.log('✅ Rôles récupérés :', decodedToken.roles);
+        // console.log('✅ Rôles récupérés :', decodedToken.roles);
         return decodedToken.roles; // ✅ Retourne tous les rôles
       }
     } catch (error) {
@@ -89,12 +89,12 @@ export class StorageService {
   static isAdminLoggedIn(): boolean {
     const token = this.getToken();
     if (!token) {
-      console.log('⚠️ Aucun token trouvé, admin non connecté.');
+      // console.log('⚠️ Aucun token trouvé, admin non connecté.');
       return false;
     }
 
     const roles = this.getUserRoles();
-    console.log('🔍 Vérification des rôles Admin :', roles);
+    // console.log('🔍 Vérification des rôles Admin :', roles);
 
     return roles.includes('ADMIN'); // ✅ Vérifie si ADMIN est dans la liste
   }
@@ -102,12 +102,12 @@ export class StorageService {
   static isUserLoggedIn(): boolean {
     const token = this.getToken();
     if (!token) {
-      console.log('⚠️ Aucun token trouvé, utilisateur non connecté.');
+      // console.log('⚠️ Aucun token trouvé, utilisateur non connecté.');
       return false;
     }
 
     const roles = this.getUserRoles();
-    console.log('🔍 Vérification des rôles User :', roles);
+    // console.log('🔍 Vérification des rôles User :', roles);
 
     return roles.includes('USER'); // ✅ Vérifie si USER est dans la liste
   }

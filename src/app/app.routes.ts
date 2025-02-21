@@ -5,11 +5,18 @@ import { LoginComponent } from './pages/auth/login/login.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { ProductsComponent } from './pages/products/products.component';
 
 export const routes: Routes = [
     {
         path:'',
-        component: HomeComponent
+        component: HomeComponent,
+        title: 'Accueil'
+    },
+    {
+        path: 'products',
+        component: ProductsComponent,
+        title: 'Liste des produits'
     },
     {
         path:'register',

@@ -1,52 +1,81 @@
-<div class="navbar bg-base-100 border-b border-blue-50">
-    <div class="navbar-start">
-        <div class="dropdown">
-            <a class="btn btn-ghost text-xl">
-                <div class="border-1 bg-secondary logo p-2 rounded-xl" routerLink="">TechNova</div>
-            </a>
-        </div>
+<div class="navbar bg-base-100 border-b border-blue-50 md:px-40 relative z-50">
+    <!-- Navbar Start -->
+    <div class="navbar-start flex items-center">
+        <a class="btn btn-ghost text-xl" routerLink="/">
+            <div class="border bg-secondary logo p-2 rounded-xl">TechNova</div>
+        </a>
     </div>
-    <div class="navbar-center flex">
-        <div class="menu menu-sm sm:menu-lg menu-horizontal px-1">
-            <li><a href="/">Accueil</a></li>
-            <li>
-                <details #productsMenu>
-                    <summary>Produits</summary>
-                    <ul class="z-30">
-                        <li><a href="/products">All</a></li>
-                    </ul>
-                </details>
-            </li>
+
+    <!-- Menu Mobile (Bouton Burger) -->
+    <div class="md:hidden navbar-end">
+        <button class="btn btn-ghost" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+            <i class="fa-solid fa-bars text-xl"></i>
+        </button>
+    </div>
+
+    <!-- Menu Principal (Desktop) -->
+    <div class="navbar-center hidden md:flex">
+        <ul class="menu menu-horizontal px-1 space-x-4">
+            <li><a routerLink="/">Accueil</a></li>
+            <li><a routerLink="/products">Produits</a></li>
             @if (isAdmin) { 
-                <li>
-                    <details #adminMenu >
+                <li class="relative z-50">
+                    <details class="dropdown">
                         <summary>Admin</summary>
-                        <ul class="z-30 w-56">
+                        <ul class="dropdown-content bg-base-100 rounded-box shadow-lg w-40 p-2 absolute z-50">
                             <li><a routerLink="/admin">Tableau de bord</a></li>
                         </ul>
                     </details>
                 </li>
             }
-        </div>
+        </ul>
     </div>
-    <div class="navbar-end pe-4 flex align-items-center">
-        <div class="dropdown dropdown-menu pe-4">
-            <div tabindex="0" role="button">
-                <i class="fa-solid fa-user menu-icon"></i>
-            </div>
-            <ul class="dropdown-content menu menu-lg bg-base-100 rounded-box z-10 w-52 p-2 shadow -translate-x-28 ">
+
+    <!-- Icônes User et Panier (Desktop) -->
+    <div class="navbar-end hidden md:flex gap-4 relative z-50">
+        <!-- Profil -->
+        <div class="dropdown dropdown-end relative z-50">
+            <button tabindex="0">
+                <i class="fa-solid fa-user text-xl"></i>
+            </button>
+            <ul class="dropdown-content menu bg-base-100 rounded-box w-52 p-2 shadow-lg mt-2 absolute z-50">
                 @if (isLoggedIn || isAdmin) {
-                    <li class="hover:bg-white/50"><button class="link  no-underline" routerLink="/user-dashboard">Tableau de bord</button></li>
-                    <li class="hover:bg-white/50"><button class="link text-red-500 no-underline" (click)="logout()">Déconnexion</button></li>
+                    <li><button class="link no-underline" routerLink="/user-dashboard">Tableau de bord</button></li>
+                    <li><button class="link text-red-500" (click)="logout()">Déconnexion</button></li>
                 } @else {
-                    <li class="hover:bg-white/50"><button class="link  no-underline" routerLink="/login">Connexion</button></li>
+                    <li><button class="link no-underline" routerLink="/login">Connexion</button></li>
                 }
             </ul>
         </div>
-        <div class="dropdown dropdown-menu me-2" routerLink="/cart">
-            <div tabindex="0" role="button">
-                <i class="fa-solid fa-cart-shopping menu-icon"></i>
-            </div>
-        </div>
+
+        <!-- Panier -->
+        <a routerLink="/cart" class="relative z-50">
+            <i class="fa-solid fa-cart-shopping text-xl"></i>
+        </a>
+    </div>
+
+    <!-- Menu Mobile Responsive -->
+    <div id="mobile-menu" class="absolute top-16 left-0 w-full bg-white shadow-lg hidden md:hidden z-50">
+        <ul class="menu p-4 space-y-2">
+            <li><a routerLink="/">Accueil</a></li>
+            <li><a routerLink="/products">Produits</a></li>
+            @if (isAdmin) {
+                <li class="relative z-50">
+                    <details class="dropdown">
+                        <summary>Admin</summary>
+                        <ul class="dropdown-content bg-base-100 rounded-box shadow-lg w-40 p-2 absolute z-50">
+                            <li><a routerLink="/admin">Tableau de bord</a></li>
+                        </ul>
+                    </details>
+                </li>
+            }
+            <li><a routerLink="/cart">Panier</a></li>
+            @if (isLoggedIn || isAdmin) {
+                <li><a routerLink="/user-dashboard">Tableau de bord</a></li>
+                <li><button class="link text-red-500" (click)="logout()">Déconnexion</button></li>
+            } @else {
+                <li><a routerLink="/login">Connexion</a></li>
+            }
+        </ul>
     </div>
 </div>

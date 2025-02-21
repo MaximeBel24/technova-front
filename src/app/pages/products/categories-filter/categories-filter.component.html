@@ -1,0 +1,11 @@
+<div class="form-control">
+    <label class="label">
+        <span class="label-text font-semibold">Catégories</span>
+    </label>
+    <select (change)="selectedCategorie.emit(valueCategory)" [(ngModel)]="valueCategory"
+            class="select select-bordered w-full">
+        @for (category of propCategories; track category) {
+            <option value="{{ category }}">{{ category }}</option>
+        }
+    </select>
+</div>

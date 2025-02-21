@@ -1,7 +1,8 @@
-import { inject, Injectable } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { environment } from '../../../environment/environment';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { catchError, Observable, tap } from 'rxjs';
+import { Product } from '../model/product.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +13,54 @@ export class ProductService {
 
   private http = inject(HttpClient);
 
-  getAllProducts(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/`);
+  product = signal<Product>;
+  products = signal<Product[]>([]);
+  searchProduct = signal<string>('');
+  productsSearched = computed(() => {
+    const str = this.searchProduct().toLowerCase();
+    if (str == '') {
+      return this.products();
+    }
+    return this.products().filter((product) =>
+      product.name.toLowerCase().includes(str)
+    );
+  });
+
+  getAll(): Observable<Product[]> {
+    return this.http.get<Product[]>(this.apiUrl)
+      .pipe(
+        tap((products) => {
+          this.products.set(products);
+        })
+      )
   }
 
-  getLatestProducts(limit: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}?limit=${limit}`);
+  getProductImage(id: number) {
+    return this.http.get<any>(`${this.apiUrl}/${id}/image`);
   }
+
+  createImageFromBlob(image: Blob): string {
+    const reader = new FileReader();
+    reader.readAsDataURL(image);
+    let imgUrl: string = '';
+    reader.onloadend = () => {
+      imgUrl = reader.result as string;
+    };
+    return imgUrl;
+  }
+
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`)
+      .pipe(
+        tap(() => {
+          const newProducts = this.products().filter((product) => product.id !== id);
+          this.products.set(newProducts);
+        }),
+        catchError((error) => {
+          throw error;
+        })
+      )
+  }
+
+
 }

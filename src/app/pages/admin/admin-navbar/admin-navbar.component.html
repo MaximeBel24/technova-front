@@ -1,0 +1,35 @@
+<!-- Barre de navigation admin -->
+<nav class=" border-b border-gray-300 py-2 md:py-3 px-4 relative z-40">
+    <!-- Bouton burger pour mobile -->
+    <div class="md:hidden flex justify-between items-center">
+        <h2 class="text-lg font-semibold">Panneau d’administration</h2>
+        <button class="text-2xl" onclick="document.getElementById('admin-menu').classList.toggle('hidden')">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </div>
+
+    <!-- Menu d'administration -->
+    <ul id="admin-menu" class="hidden md:flex flex-col md:flex-row md:items-center md:justify-center gap-4 mt-3 md:mt-0">
+        <li>
+            <a routerLink="/admin/users" class="block px-4 py-2 text-gray-700 hover:bg-gray-200 rounded-lg transition">
+                <i class="fa-solid fa-users mr-2"></i> Utilisateurs
+            </a>
+        </li>
+        <li>
+            <a routerLink="/admin/products" class="block px-4 py-2 text-gray-700 hover:bg-gray-200 rounded-lg transition">
+                <i class="fa-solid fa-box mr-2"></i> Produits
+            </a>
+        </li>
+        <li>
+            <a routerLink="/admin/categories" class="block px-4 py-2 text-gray-700 hover:bg-gray-200 rounded-lg transition">
+                <i class="fa-solid fa-tags mr-2"></i> Catégories
+            </a>
+        </li>
+        <li>
+            <a routerLink="/admin/orders" class="block px-4 py-2 text-gray-700 hover:bg-gray-200 rounded-lg transition">
+                <i class="fa-solid fa-shopping-cart mr-2"></i> Commandes
+            </a>
+        </li>
+    </ul>
+</nav>
+

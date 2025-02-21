@@ -1,9 +1,10 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-banner',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './banner.component.html',
   styleUrl: './banner.component.scss',
 })
