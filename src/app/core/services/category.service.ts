@@ -9,7 +9,7 @@ import { Observable, tap } from 'rxjs';
 })
 export class CategoryService {
 
-    private apiUrl = `${environment.apiUrl}/category`;
+    private apiUrl = `${environment.apiUrl}/categories`;
   
     private http = inject(HttpClient);
   

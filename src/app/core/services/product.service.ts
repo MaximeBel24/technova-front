@@ -35,18 +35,8 @@ export class ProductService {
       )
   }
 
-  getProductImage(id: number) {
-    return this.http.get<any>(`${this.apiUrl}/${id}/image`);
-  }
-
-  createImageFromBlob(image: Blob): string {
-    const reader = new FileReader();
-    reader.readAsDataURL(image);
-    let imgUrl: string = '';
-    reader.onloadend = () => {
-      imgUrl = reader.result as string;
-    };
-    return imgUrl;
+  getProductById(id: number): Observable<Product> {
+    return this.http.get<Product>(`${this.apiUrl}/${id}`)
   }
 
   delete(id: number): Observable<void> {

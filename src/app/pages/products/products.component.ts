@@ -4,7 +4,6 @@ import { CategoriesFilterComponent } from './categories-filter/categories-filter
 import { SearchBarComponent } from "./search-bar/search-bar.component";
 import { ProductFilterPipe } from '../../core/pipes/product-filter.pipe';
 import { ProductCardComponent } from "./product-card/product-card.component";
-import { Category } from '../../core/model/category.interface';
 
 @Component({
   selector: 'app-products',
@@ -17,7 +16,7 @@ export class ProductsComponent implements OnInit{
   productService = inject(ProductService);
   products = this.productService.productsSearched;
 
-  // filterCategorie: Category = ;
+  filterCategorie = '';
 
   constructor() {
     effect(() => {
@@ -29,11 +28,4 @@ export class ProductsComponent implements OnInit{
     this.productService.getAll().subscribe();
   }
 
-  removeProduct(id: number) {
-    this.productService.delete(id).subscribe({
-      error: (err) => {
-        console.error(err);
-      },
-    });
-  }
 }

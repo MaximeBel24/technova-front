@@ -11,11 +11,10 @@
       class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
     >
       @for (product of products() 
-    //   | productFilter:filterCategorie
+      | productFilter:filterCategorie
       ; track product.id) {
       <app-product-card
         [product]="product"
-        (deleteProduct)="removeProduct($event)"
       ></app-product-card>
       } @empty {
       <div class="col-span-full text-center text-gray-500 text-lg">

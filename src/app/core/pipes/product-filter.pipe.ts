@@ -7,9 +7,9 @@ import { Category } from '../model/category.interface';
 })
 export class ProductFilterPipe implements PipeTransform {
 
-  transform(products: Product[], category: Category): Product[]  {
+  transform(products: Product[], category: string): Product[]  {
     if (!category) return products;
-    return products.filter((product) => product.categoryName === category.name);
+    return products.filter((product) => product.categoryName === category);
   }
 
 }

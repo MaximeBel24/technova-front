@@ -22,8 +22,9 @@
                 <li class="relative z-50">
                     <details class="dropdown">
                         <summary>Admin</summary>
-                        <ul class="dropdown-content bg-base-100 rounded-box shadow-lg w-40 p-2 absolute z-50">
+                        <ul class="dropdown-content bg-base-100 rounded-box shadow-lg w-48 p-2 absolute z-50">
                             <li><a routerLink="/admin">Tableau de bord</a></li>
+                            <li><a routerLink="/admin/products">Gestion des produits</a></li>
                         </ul>
                     </details>
                 </li>
@@ -41,7 +42,7 @@
             <ul class="dropdown-content menu bg-base-100 rounded-box w-52 p-2 shadow-lg mt-2 absolute z-50">
                 @if (isLoggedIn || isAdmin) {
                     <li><button class="link no-underline" routerLink="/user-dashboard">Tableau de bord</button></li>
-                    <li><button class="link text-red-500" (click)="logout()">Déconnexion</button></li>
+                    <li><button class="link text-red-500 no-underline" (click)="logout()">Déconnexion</button></li>
                 } @else {
                     <li><button class="link no-underline" routerLink="/login">Connexion</button></li>
                 }
