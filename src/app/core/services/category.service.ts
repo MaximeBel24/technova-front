@@ -2,7 +2,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import { environment } from '../../../environment/environment';
 import { HttpClient } from '@angular/common/http';
 import { Category } from '../model/category.interface';
-import { Observable, tap } from 'rxjs';
+import { catchError, Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +24,18 @@ export class CategoryService {
           })
         )
     }
-  
 
+      delete(id: number): Observable<void> {
+        return this.http.delete<void>(`${this.apiUrl}/${id}`)
+          .pipe(
+            tap(() => {
+              const newCategories = this.categories().filter((category) => category.id !== id);
+              this.categories.set(newCategories);
+            }),
+            catchError((error) => {
+              throw error;
+            })
+          )
+      }
+  
 }

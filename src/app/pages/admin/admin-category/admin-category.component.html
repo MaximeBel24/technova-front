@@ -1,0 +1,40 @@
+<div class="container mx-auto max-w-6xl px-4 py-6 text-center">
+    <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">
+      Gestion des Produits
+    </h1>
+  
+    <div class="overflow-x-auto bg-white shadow-md rounded-lg">
+      <table class="table-auto w-full border-collapse">
+        <thead class="bg-gray-200 text-gray-700">
+          <tr>
+            <th class="p-2 min-w-[50px]">Id</th>
+            <th class="p-2 min-w-[150px]">Nom</th>
+            <th class="p-2 min-w-[150px]">Options</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (category of categories(); track category.id) {
+          <tr class="hover:bg-gray-100 border-b">
+            <td class="p-2">{{ category.id }}</td>
+            <td class="p-2 font-semibold">{{ category.name }}</td>
+            <td class="p-2 flex justify-center gap-2">
+              <button
+                class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+              >
+                <i class="fa-solid fa-edit"></i>
+              </button>
+              <button
+                class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition"
+                confirm="Êtes vous sûr de vouloir supprimer ce produit ?"
+                (confirmDelete)="deleteCategory(category.id)"
+              >
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

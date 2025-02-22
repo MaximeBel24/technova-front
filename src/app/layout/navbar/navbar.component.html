@@ -16,15 +16,15 @@
     <!-- Menu Principal (Desktop) -->
     <div class="navbar-center hidden md:flex">
         <ul class="menu menu-horizontal px-1 space-x-4">
-            <li><a routerLink="/">Accueil</a></li>
-            <li><a routerLink="/products">Produits</a></li>
+            <li><a routerLink="/" class="block px-4 py-2 text-gray-700 hover:bg-gray-200 rounded-lg transition">Accueil</a></li>
+            <li><a routerLink="/products" class="block px-4 py-2 text-gray-700 hover:bg-gray-200 rounded-lg transition">Produits</a></li>
             @if (isAdmin) { 
                 <li class="relative z-50">
-                    <details class="dropdown">
-                        <summary>Admin</summary>
+                    <details class="dropdown ">
+                        <summary class="px-4 py-2 text-gray-700 hover:bg-gray-200 rounded-lg transition">Admin</summary>
                         <ul class="dropdown-content bg-base-100 rounded-box shadow-lg w-48 p-2 absolute z-50">
-                            <li><a routerLink="/admin">Tableau de bord</a></li>
-                            <li><a routerLink="/admin/products">Gestion des produits</a></li>
+                            <li><a routerLink="/admin" class="block px-4 py-2 text-gray-700 hover:bg-gray-200 rounded-lg transition">Tableau de bord</a></li>
+                            <li><a routerLink="/admin/products" class="block px-4 py-2 text-gray-700 hover:bg-gray-200 rounded-lg transition">Gestion des produits</a></li>
                         </ul>
                     </details>
                 </li>
@@ -36,13 +36,13 @@
     <div class="navbar-end hidden md:flex gap-4 relative z-50">
         <!-- Profil -->
         <div class="dropdown dropdown-end relative z-50">
-            <button tabindex="0">
-                <i class="fa-solid fa-user text-xl"></i>
+            <button tabindex="0" class="block px-4 py-2 text-gray-700 hover:bg-gray-200 rounded-lg transition">
+                <i class="fa-solid fa-user text-xl "></i>
             </button>
             <ul class="dropdown-content menu bg-base-100 rounded-box w-52 p-2 shadow-lg mt-2 absolute z-50">
                 @if (isLoggedIn || isAdmin) {
-                    <li><button class="link no-underline" routerLink="/user-dashboard">Tableau de bord</button></li>
-                    <li><button class="link text-red-500 no-underline" (click)="logout()">Déconnexion</button></li>
+                    <li><button class="link no-underline block px-4 py-2 text-gray-700 hover:bg-gray-200 rounded-lg transition" routerLink="/user-dashboard">Tableau de bord</button></li>
+                    <li><button class="link text-red-500 no-underline block px-4 py-2  hover:bg-red-100 rounded-lg transition" (click)="logout()">Déconnexion</button></li>
                 } @else {
                     <li><button class="link no-underline" routerLink="/login">Connexion</button></li>
                 }
@@ -50,7 +50,7 @@
         </div>
 
         <!-- Panier -->
-        <a routerLink="/cart" class="relative z-50">
+        <a routerLink="/cart" class="relative z-50 px-4 py-2 text-gray-700 hover:bg-gray-200 rounded-lg transition">
             <i class="fa-solid fa-cart-shopping text-xl"></i>
         </a>
     </div>

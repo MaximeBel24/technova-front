@@ -13,24 +13,19 @@
   <!-- Contenu -->
   <div class="card-body p-4 text-center md:text-left">
     <h3 class="text-lg font-bold">{{ product.name }}</h3>
-    <p class="text-gray-500 text-sm truncate">{{ product.description }}</p>
     <p class="text-gray-500 text-sm">Catégorie : {{ product.categoryName }}</p>
     <p class="text-blue-600 font-semibold text-lg">{{ product.price }}€</p>
 
     <!-- Actions -->
-    <div class="mt-3 flex justify-center md:justify-between items-center gap-3">
+    <div class="mt-3 flex justify-center items-center gap-3">
       @if (product.stock > 0) {
-      <a>
-        <i
-          class="fa-solid fa-cart-plus text-xl text-orange-500 hover:text-orange-700 transition-all"
-        ></i>
+      <a
+        [routerLink]="['/products', product.id]"
+        class="py-2 px-6 bg-blue-500 hover:bg-blue-700 rounded-lg text-white transition-all"
+      >
+        Voir les détails
       </a>
-      }
-      <a [routerLink]="['/products', product.id]">
-        <i
-          class="fa-solid fa-eye text-xl text-blue-400 hover:text-blue-600 transition-all"
-        ></i>
-      </a>
+      } @else { }
     </div>
   </div>
 </div>
