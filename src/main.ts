@@ -5,5 +5,6 @@ import { enableProdMode } from '@angular/core';
 
 enableProdMode();
 
-bootstrapApplication(AppComponent, appConfig)
-  .catch((err) => console.error(err));
+bootstrapApplication(AppComponent, appConfig).catch((err) =>
+  console.error(err)
+);

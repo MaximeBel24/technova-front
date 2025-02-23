@@ -21,7 +21,7 @@
       <i class="fa-solid fa-box text-3xl text-green-500"></i>
       <div>
         <p class="text-lg font-semibold">Produits</p>
-        <p class="text-gray-600 text-sm">Total : 350</p>
+        <p class="text-gray-600 text-sm">Total : {{numberOfProducts}}</p>
       </div>
     </div>
     <div
@@ -30,7 +30,7 @@
       <i class="fa-solid fa-tags text-3xl text-yellow-500"></i>
       <div>
         <p class="text-lg font-semibold">Catégories</p>
-        <p class="text-gray-600 text-sm">Total : 25</p>
+        <p class="text-gray-600 text-sm">Total : {{numberOfCategories}}</p>
       </div>
     </div>
     <div
@@ -64,8 +64,8 @@
       <span>Ajouter un produit</span>
     </a>
     <a
-      routerLink="/admin/categories"
-      class="bg-gray-100 hover:bg-gray-200 p-4 rounded-lg shadow flex items-center gap-3 justify-center transition"
+      routerLink="categories"
+      class="bg-gray-100 hover:bg-gray-200 p-4 rounded-lg shadow flex items-center gap-3 justify-center transition cursor-pointer"
     >
       <i class="fa-solid fa-layer-group text-xl text-gray-700"></i>
       <span>Gérer les catégories</span>

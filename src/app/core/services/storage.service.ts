@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 const TOKEN = 'ecom-token';
 const USER = 'ecom-user';
@@ -8,7 +9,7 @@ const USER = 'ecom-user';
   providedIn: 'root',
 })
 export class StorageService {
-  constructor() {}
+
 
   private isBrowser(): boolean {
     return (
@@ -48,20 +49,12 @@ export class StorageService {
       typeof window.localStorage !== 'undefined'
     ) {
       let user = JSON.parse(window.localStorage.getItem(USER) || '{}');
-      // console.log('Utilisateur : ' + user);
+      console.log('Utilisateur : ' + user);
       return user;
     }
     return null;
   }
 
-  static getUserId(): string {
-    const user = this.getUser();
-    if (user == null) {
-      return '';
-    }
-    // console.log('ID User : ' + user.userId);
-    return user.userId;
-  }
 
   static getUserRoles(): string[] {
     const token = window.localStorage.getItem('ecom-token');

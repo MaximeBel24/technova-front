@@ -3,11 +3,29 @@ import { environment } from '../../../environment/environment';
 import { map, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { StorageService } from './storage.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
+
+  private jwtHelper = new JwtHelperService();
+
+  constructor() {}
+
+  getToken(): string | null {
+    return localStorage.getItem('ecom-token'); // Récupère le token stocké
+  }
+
+  getUserId(): number | null {
+    const token = this.getToken();
+    if (token) {
+      const decodedToken = this.jwtHelper.decodeToken(token);
+      return decodedToken?.id || null; // Récupère l'ID stocké dans le token
+    }
+    return null;
+  }
 
   private apiUrl = `${environment.apiUrl}/account`;
 

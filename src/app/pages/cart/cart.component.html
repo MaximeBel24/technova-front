@@ -1,1 +1,52 @@
-<p>cart works!</p>
+<div class="container mx-auto p-4">
+  <h1 class="text-3xl font-bold text-center mb-6">🛒 Mon Panier</h1>
+  @if (cartProducts.length > 0) {
+  <div class="space-y-6">
+    @for (item of cartProducts; track item.id) {
+
+    <div
+      class="flex items-center border rounded-lg py-4 px-16 shadow-lg bg-white"
+    >
+      <img
+        [src]="item.product.imgUrl"
+        alt="Image du produit"
+        class="w-24 h-24 object-cover rounded-lg"
+      />
+      <div class="ml-4 flex-1">
+        <h2 class="text-xl font-semibold">{{ item.product.name }}</h2>
+        <p class="text-gray-500">{{ item.product.price }}€</p>
+        <div class="flex items-center mt-2">
+          <span class="text-gray-700">Quantité : {{ item.quantity }}</span>
+        </div>
+      </div>
+      <button
+        (click)="removeFromCart(item.product.id)"
+        class="text-red-500 hover:text-red-700 transition-all text-xl"
+      >
+        <i class="fa-solid fa-trash"></i>
+      </button>
+    </div>
+    }
+  </div>
+
+  <div class="mt-6 text-right text-lg font-bold">
+    Total : {{ getTotalPrice() | currency : "EUR" }}
+    <div class="text-center mt-6">
+      <button
+        class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
+      >
+        Finaliser la commande
+      </button>
+    </div>
+  </div>
+
+  } @else {
+
+  <div class="text-center text-gray-500">
+    <p>Votre panier est vide.</p>
+  </div>
+
+  }
+
+  <!-- Bouton de commande -->
+</div>

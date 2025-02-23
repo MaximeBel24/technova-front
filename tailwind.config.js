@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./src/**/*.{html,ts}",
+    "./src/**/*.{html,ts}"
   ],
   theme: {
     fontFamily: {
@@ -52,4 +52,5 @@ module.exports = {
     require('@tailwindcss/typography'),
     require('daisyui'),
   ],
+  darkMode: "class"
 };
