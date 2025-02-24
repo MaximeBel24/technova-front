@@ -1,0 +1,12 @@
+.slide {
+    transition: all 0.7s ease-in-out;
+}
+.slide.active{
+    opacity: 1;
+    transform: translateX(0);
+}
+// .slide:not(.active){
+//     opacity: 0;
+//     transform: translateX(100%);
+//     pointer-events: none;
+// }

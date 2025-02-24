@@ -1,6 +1,6 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { environment } from '../../../environment/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable, tap } from 'rxjs';
 import { Product } from '../model/product.interface';
 
@@ -38,6 +38,14 @@ export class ProductService {
   getProductById(id: number): Observable<Product> {
     return this.http.get<Product>(`${this.apiUrl}/${id}`)
   }
+
+  addProduct(productRequest: Product): Observable<any> {
+      return this.http.post(this.apiUrl, productRequest, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        })
+      });
+    }
 
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`)
